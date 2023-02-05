@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 100,
             ),
             Center(
-                child: Text(qMap.keys.toList()[currentIndex],
+                child: Text(questions[currentIndex].text,
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 35, color: Colors.white))),
             const Spacer(),
@@ -107,10 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
   // Your Logic
   void checkAnswers(bool buttonValue) {
     // Check for score
-    if (scoreIcons.length < qMap.entries.length) {
-      print("Button Value : $buttonValue");
-      print("Right Answer : $currentIndex}");
-      if (buttonValue == qMap.values.toList()[currentIndex]) {
+    if (scoreIcons.length < questions.length) {
+      if (buttonValue == questions[currentIndex].answer) {
         // Add Check Icon
         scoreIcons.add(
           const Icon(Icons.check, color: Colors.green),
@@ -124,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     // Check for questions
-    if (currentIndex < qMap.entries.length - 1) {
+    if (currentIndex < questions.length - 1) {
       // * State Changes
       // Increase the index to get the next question
       currentIndex++;
