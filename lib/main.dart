@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 100,
             ),
             Center(
-                child: Text(questions[currentIndex],
+                child: Text(qMap.keys.toList()[currentIndex],
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 35, color: Colors.white))),
             const Spacer(),
@@ -106,22 +106,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Your Logic
   void checkAnswers(bool buttonValue) {
+    // Check for score
+    if (scoreIcons.length < qMap.entries.length) {
+      print("Button Value : $buttonValue");
+      print("Right Answer : $currentIndex}");
+      if (buttonValue == qMap.values.toList()[currentIndex]) {
+        // Add Check Icon
+        scoreIcons.add(
+          const Icon(Icons.check, color: Colors.green),
+        );
+      } else {
+        // Add False Icon
+        scoreIcons.add(
+          const Icon(Icons.close, color: Colors.red),
+        );
+      }
+    }
+
     // Check for questions
-    if (currentIndex < questions.length - 1) {
+    if (currentIndex < qMap.entries.length - 1) {
       // * State Changes
       // Increase the index to get the next question
       currentIndex++;
-    }
-
-    // Check for score
-    if (scoreIcons.length < questions.length) {
-      // Add Check Icon
-      scoreIcons.add(
-        Icon(
-          buttonValue ? Icons.check : Icons.close,
-          color: buttonValue ? Colors.green : Colors.red,
-        ),
-      );
     }
 
     // Tell Flutter  to change the ui based on the state changes above
