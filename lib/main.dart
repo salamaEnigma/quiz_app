@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'questions.dart';
 
 void main() {
@@ -126,6 +127,16 @@ class _MyHomePageState extends State<MyHomePage> {
       // * State Changes
       // Increase the index to get the next question
       currentIndex++;
+    } else {
+      // Last question => Show toast
+      Fluttertoast.showToast(
+          msg: "End of Questions",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
 
     // Tell Flutter  to change the ui based on the state changes above
